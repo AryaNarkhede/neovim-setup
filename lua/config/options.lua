@@ -6,9 +6,11 @@
 vim.opt.number = true
 vim.opt.relativenumber = true -- This is better for Vim motions than standard numbers
 vim.opt.scrolloff = 8 -- Keep 8 lines of context when scrolling
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.tabstop = 8
+vim.opt.shiftwidth = 8
+vim.opt.softtabstop = 8
+vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
+vim.opt.expandtab = false -- Use spaces instead of tabs
 
 -- Windows Performance Tweak
 -- (Helps if Neovim feels sluggish on Windows Terminal)
