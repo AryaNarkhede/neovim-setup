@@ -36,11 +36,26 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 -- Neovim won't warn you anyway, but this ensures git integration doesn't nag
 vim.opt.signcolumn = "yes" -- Always show the gutter
 
+-- terminal
+-- Set the shell to Git Bash
+-- NOTE: Check if your path matches. This is the default location.
+vim.opt.shell = "C:/Progra~1/Git/bin/bash.exe"
+-- The flag to pass commands to bash (PowerShell uses "-c" or "-Command", Bash uses "-c")
+vim.opt.shellcmdflag = "-c"
+
+-- Essential for Windows path handling in Bash
+vim.opt.shellquote = ""
+vim.opt.shellxquote = ""
+
+
+-- Apply to common UI elements
+
 if vim.g.neovide then
   vim.g.neovide_opacity = 1.0
   vim.g.neovide_scroll_animation_length = 0 -- Turn off scroll lag
   vim.g.neovide_cursor_animation_length = 0.00 -- Turn off cursor lag
   vim.g.neovide_cursor_trail_size = 0 -- No fancy trails
+  vim.g.neovide_position_animation_length = 0
   vim.g.neovide_refresh_rate = 60 -- Match your monitor (important on Windows!)
   vim.opt.guifont = "JetBrainsMono NFM:h15"
 end

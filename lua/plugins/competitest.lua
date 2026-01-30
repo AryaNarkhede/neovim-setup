@@ -5,13 +5,13 @@ return {
     config = function()
       require("competitest").setup({
         runner_ui = {
-          interface = "split", -- Show test cases in a split, not popup
+          interface = "popup", -- Show test cases in a split, not popup
         },
         compile_command = {
           -- Customize this to match your flags
           cpp = { exec = "g++", args = {"-std=c++20", "-Wall", "$(FNAME)", "-o", "$(FNOEXT).exe"} },
         },
-        run_command = {
+        run_command = { 
           cpp = { exec = "./$(FNOEXT).exe" },
         },
       })
