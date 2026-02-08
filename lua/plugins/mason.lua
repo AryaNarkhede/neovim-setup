@@ -3,3 +3,4 @@ return {
   cmd = "Mason", -- Only load when you type :Mason
   lazy = true,
 }
+

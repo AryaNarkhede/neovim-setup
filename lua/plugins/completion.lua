@@ -2,24 +2,25 @@ return {
   {
     "saghen/blink.cmp",
     opts = function(_, opts)
+      -- 1. Disable Auto-Selection
+      -- This ensures that when the menu pops up, nothing is highlighted.
+      -- So pressing Enter defaults to "New Line".
+      opts.completion = {
+        list = {
+          selection = { preselect = true, auto_insert = false },
+        },
+      }
+
       opts.keymap = {
-        -- set to 'default' to avoid the 'super-tab' cycling behavior
-        preset = "default", 
-
-        -- TAB: Try to accept. If menu is closed, do "fallback" (Indentation)
-        ["<Tab>"] = { "select_and_accept", "fallback" },
-
-        -- SHIFT+TAB: Go up. If menu closed, do "fallback" (Un-indent)
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-
-        -- ENTER: Do "fallback" (New Line). Do NOT accept completion.
+        preset = "none",
+        -- TAB: Accepts the item immediately
+        ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
+        -- ENTER: Always New Line
         ["<CR>"] = { "fallback" },
-
-        -- ARROWS: Navigate the menu
-        ["<Up>"] = { "select_prev", "fallback" },
-        ["<Down>"] = { "select_next", "fallback" },
-        ["<C-p>"] = { "select_prev", "fallback" },
+        
+        -- Use C-n / C-p or Arrows to cycle
         ["<C-n>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback" },
       }
     end,
   },

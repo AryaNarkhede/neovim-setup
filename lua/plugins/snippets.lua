@@ -2,7 +2,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     -- Load immediately to ensure they exist
-    lazy = false, 
+    lazy = false,   
     keys = function() return {} end,
     config = function()
       local ls = require("luasnip")

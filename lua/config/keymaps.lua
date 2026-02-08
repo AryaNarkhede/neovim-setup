@@ -34,5 +34,6 @@ local function toggle_term()
   Snacks.terminal(nil, { win = { position = "bottom", height = 15 } }) 
 end
 
+
 -- Map Ctrl+t in Normal ("n") and Terminal ("t") modes
 map({ "n", "t" }, "<C-t>", toggle_term, { desc = "Toggle Terminal" })
