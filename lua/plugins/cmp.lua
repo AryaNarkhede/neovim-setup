@@ -1,100 +1,52 @@
 return {
+  "saghen/blink.cmp",
+  -- Optional: provides built-in snippets
+  dependencies = { "rafamadriz/friendly-snippets" },
 
-  "hrsh7th/nvim-cmp",
+  -- Use a release tag to download pre-built Rust binaries so you don't have to compile it
+  version = "*",
 
-  event = "InsertEnter",
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    -- 1. Source configuration
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+    },
 
-  dependencies = {
-
-    "hrsh7th/cmp-nvim-lsp",
-
-    "hrsh7th/cmp-buffer", -- Required for 'buffer' source
-
-    "hrsh7th/cmp-path", -- Required for 'path' source
-
-  },
-
-  config = function()
-
-    local cmp = require("cmp")
-
-    local compare = require("cmp.config.compare")
-
-
-
-    cmp.setup({
-
-      -- 1. Source Prioritization (Your snippet)
-
-      -- This forces words found in the current file to appear above global LSP items
-
-      sources = cmp.config.sources({
-
-        { name = "buffer", priority = 1000 },
-
-        { name = "nvim_lsp", priority = 500 },
-
-        { name = "path" },
-
-      }),
-
-
-
-      -- 2. Sorting Logic (The "Smart" Locality)
-
-      -- This ensures that even within the same source, items closer to the cursor win
-
-      sorting = {
-
-        priority_weight = 2,
-
-        comparators = {
-
-          compare.offset,
-
-          compare.exact,
-
-          compare.locality, -- Keep this high to prefer variables in current scope
-
-          compare.recently_used,
-
-          compare.score,
-
-          compare.kind,
-
-          compare.sort_text,
-
-          compare.length,
-
-          compare.order,
-
-        },
-
+    -- 2. Autocomplete Settings
+    completion = {
+      -- This keeps the popup menu hidden by default
+      menu = {
+        auto_show = false,
       },
+      
+      -- This enables the Copilot-style inline ghost text
+      ghost_text = {
+        enabled = true,
+      },
+    },
 
+    -- 3. Key Mappings
+    keymap = {
+      -- We start with a blank slate instead of a preset to give you full control
+      preset = "none",
+      
+      -- Manually trigger the popup box when you actually want to see options
+      ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+      
+      -- Accept the ghost text or the currently selected menu item
+      ["<CR>"] = { "accept", "fallback" },
+      
+      -- Navigate the menu (only applies when you manually open it)
+      ["<Tab>"] = { "select_next", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "fallback" },
+    },
 
-
-      -- Basic mapping setup (needed so you can actually select things)
-
-      mapping = cmp.mapping.preset.insert({
-
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-
-        ["<C-Space>"] = cmp.mapping.complete(),
-
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-        ["<Tab>"] = cmp.mapping.select_next_item(),
-
-        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-
-      }),
-
-    })
-
-  end,
-
+    -- 4. Signature Help
+    -- This natively enables the parameter/documentation window you asked about earlier
+    signature = { 
+      enabled = true, 
+    },
+  },
 }
-
