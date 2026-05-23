@@ -26,7 +26,7 @@ return {
 
             "--fallback-style=llvm",
 
-            "--query-driver=C:/mingw64/bin/g++*",
+            "--query-driver=/usr/bin/g++,/usr/bin/gcc",
 
             -- DELETED: "--target=..." (This caused the crash!)
           }

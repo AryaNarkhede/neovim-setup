@@ -37,15 +37,10 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.signcolumn = "yes" -- Always show the gutter
 
 -- terminal
--- Set the shell to Git Bash
--- NOTE: Check if your path matches. This is the default location.
-vim.opt.shell = "C:/Progra~1/Git/bin/bash.exe"
--- The flag to pass commands to bash (PowerShell uses "-c" or "-Command", Bash uses "-c")
-vim.opt.shellcmdflag = "-c"
-
--- Essential for Windows path handling in Bash
-vim.opt.shellquote = ""
-vim.opt.shellxquote = ""
+-- On Linux, Neovim uses the $SHELL environment variable by default.
+-- The following settings were Windows-specific.
+-- vim.opt.shell = "/bin/bash" 
+-- vim.opt.shellcmdflag = "-c"
 
 
 -- Apply to common UI elements

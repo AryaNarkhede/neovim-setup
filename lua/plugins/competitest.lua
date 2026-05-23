@@ -9,10 +9,10 @@ return {
         },
         compile_command = {
           -- Customize this to match your flags
-          cpp = { exec = "g++", args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "$(FNOEXT).exe" } },
+          cpp = { exec = "g++", args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
         },
         run_command = {
-          cpp = { exec = "./$(FNOEXT).exe" },
+          cpp = { exec = "./$(FNOEXT)" },
         },
       })
     end,
