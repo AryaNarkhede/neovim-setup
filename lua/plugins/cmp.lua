@@ -20,7 +20,7 @@ return {
       menu = {
         auto_show = false,
       },
-      
+
       -- This enables the Copilot-style inline ghost text
       ghost_text = {
         enabled = true,
@@ -31,22 +31,30 @@ return {
     keymap = {
       -- We start with a blank slate instead of a preset to give you full control
       preset = "none",
-      
+
       -- Manually trigger the popup box when you actually want to see options
       ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
-      
+
       -- Accept the ghost text or the currently selected menu item
       ["<CR>"] = { "accept", "fallback" },
-      
+
       -- Navigate the menu (only applies when you manually open it)
       ["<Tab>"] = { "select_next", "fallback" },
       ["<S-Tab>"] = { "select_prev", "fallback" },
+
+      -- Toggle the function parameter signature window manually
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
     },
 
     -- 4. Signature Help
-    -- This natively enables the parameter/documentation window you asked about earlier
-    signature = { 
-      enabled = true, 
+    signature = {
+      enabled = true,
+      trigger = {
+        -- Prevents the signature window from opening automatically when typing '('
+        show_on_trigger_character = false,
+        show_on_insert_on_trigger_character = false,
+      },
     },
   },
 }
+

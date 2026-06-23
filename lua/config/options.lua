@@ -22,13 +22,13 @@ vim.g.autoformat = true
 
 -- files.autoSave: "afterDelay"
 -- Saves the file when you stop typing or leave the window
-vim.opt.autowrite = true 
+vim.opt.autowrite = true
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "CursorHold" }, {
   command = "silent! wa",
 })
 
 -- editor.cursorBlinking: "smooth"
--- NOTE: True smooth blinking requires a GUI client like 'Neovide'. 
+-- NOTE: True smooth blinking requires a GUI client like 'Neovide'.
 -- In a terminal, this sets the shape but the terminal controls the blink.
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
@@ -39,9 +39,8 @@ vim.opt.signcolumn = "yes" -- Always show the gutter
 -- terminal
 -- On Linux, Neovim uses the $SHELL environment variable by default.
 -- The following settings were Windows-specific.
--- vim.opt.shell = "/bin/bash" 
+-- vim.opt.shell = "/bin/bash"
 -- vim.opt.shellcmdflag = "-c"
-
 
 -- Apply to common UI elements
 
@@ -54,3 +53,4 @@ if vim.g.neovide then
   vim.g.neovide_refresh_rate = 60 -- Match your monitor (important on Windows!)
   vim.opt.guifont = "JetBrainsMono NFM:h15"
 end
+
