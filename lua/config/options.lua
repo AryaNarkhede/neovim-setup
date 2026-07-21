@@ -37,10 +37,13 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.signcolumn = "yes" -- Always show the gutter
 
 -- terminal
--- On Linux, Neovim uses the $SHELL environment variable by default.
--- The following settings were Windows-specific.
--- vim.opt.shell = "/bin/bash"
--- vim.opt.shellcmdflag = "-c"
+-- On Windows, explicitly set the shell to PowerShell.
+vim.opt.shell = "powershell"
+vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+vim.opt.shellredir = "2>&1 | %%{ \"$_\" } | Out-File %s; exit $LastExitCode"
+vim.opt.shellpipe = "2>&1 | %%{ \"$_\" } | Tee-Object %s; exit $LastExitCode"
+vim.opt.shellquote = ""
+vim.opt.shellxquote = ""
 
 -- Apply to common UI elements
 

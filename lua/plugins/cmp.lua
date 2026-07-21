@@ -1,60 +1,81 @@
 return {
   "saghen/blink.cmp",
-  -- Optional: provides built-in snippets
   dependencies = { "rafamadriz/friendly-snippets" },
-
-  -- Use a release tag to download pre-built Rust binaries so you don't have to compile it
   version = "*",
+
+  -- Global Normal-mode toggles (Which-Key integrated)
+  keys = {
+    {
+      "<leader>uu",
+      function()
+        local config = require("blink.cmp.config")
+        config.completion.menu.auto_show = not config.completion.menu.auto_show
+        local state = config.completion.menu.auto_show and "ON" or "OFF"
+        vim.notify("Autocomplete Menu: " .. state, vim.log.levels.INFO, { title = "blink.cmp" })
+      end,
+      desc = "Toggle Autocomplete Menu",
+      -- icon = "󰦨 ", 
+      mode = "n",
+    },
+  },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    -- 1. Source configuration
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },
 
-    -- 2. Autocomplete Settings
     completion = {
-      -- This keeps the popup menu hidden by default
       menu = {
         auto_show = false,
       },
+      
+      -- Keeps the documentation window completely hidden until you manually ask for it
+      documentation = {
+        auto_show = false,
+        auto_show_delay_ms = 500,
+      },
 
-      -- This enables the Copilot-style inline ghost text
       ghost_text = {
         enabled = true,
       },
     },
 
-    -- 3. Key Mappings
+    -- Key Mappings
     keymap = {
-      -- We start with a blank slate instead of a preset to give you full control
       preset = "none",
 
-      -- Manually trigger the popup box when you actually want to see options
-      ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+      -- Open the autocomplete menu (using <C-x> as the reliable alternative to <C-Space>)
+      ["<C-x>"] = { "show", "hide", "fallback" },
+      ["<C-Space>"] = { "show", "hide", "fallback" },
 
-      -- Accept the ghost text or the currently selected menu item
+      -- Accept the ghost text or currently selected item
       ["<CR>"] = { "accept", "fallback" },
 
-      -- Navigate the menu (only applies when you manually open it)
-      ["<Tab>"] = { "select_next", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "fallback" },
+      -- Navigate the menu using Ctrl+j and Ctrl+k
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
 
-      -- Toggle the function parameter signature window manually
-      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      -- === The Insert-Mode Toggles ===
+      
+      -- Press Ctrl+d to toggle the Documentation window for the selected item
+      ["<C-d>"] = { "show_documentation", "hide_documentation", "fallback" },
+      
+      -- Press Ctrl+l to toggle the function Signature help (parameters)
+      ["<C-l>"] = { "show_signature", "hide_signature", "fallback" },
+      
+      -- Bonus: Scroll inside the documentation window if it's really long
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
     },
 
-    -- 4. Signature Help
     signature = {
       enabled = true,
       trigger = {
-        -- Prevents the signature window from opening automatically when typing '('
         show_on_trigger_character = false,
         show_on_insert_on_trigger_character = false,
       },
     },
   },
 }
-
