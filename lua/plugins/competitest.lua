@@ -12,7 +12,7 @@ return {
           cpp = { exec = "g++", args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
         },
         run_command = {
-          cpp = { exec = ".\\$(FNOEXT).exe" },
+          cpp = { exec = "./$(FNOEXT)" },
         },
       })
     end,

@@ -11,7 +11,7 @@ return {
           "--header-insertion=iwyu",
           "--completion-style=detailed",
           "--fallback-style=Linux",
-          "--query-driver=C:/msys64/ucrt64/bin/g++.exe",
+          "--query-driver=/usr/bin/g++",
         },
       },
     },

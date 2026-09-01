@@ -12,8 +12,8 @@ vim.opt.softtabstop = 8
 vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
 vim.opt.expandtab = false -- Use spaces instead of tabs
 
--- Windows Performance Tweak
--- (Helps if Neovim feels sluggish on Windows Terminal)
+-- Linux Performance Tweak
+-- (Helps if Neovim feels sluggish on Linux Terminal)
 -- vim.opt.lazyredraw = true
 
 -- editor.formatOnSave: true
@@ -37,13 +37,8 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.signcolumn = "yes" -- Always show the gutter
 
 -- terminal
--- On Windows, explicitly set the shell to PowerShell.
-vim.opt.shell = "powershell"
-vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-vim.opt.shellredir = "2>&1 | %%{ \"$_\" } | Out-File %s; exit $LastExitCode"
-vim.opt.shellpipe = "2>&1 | %%{ \"$_\" } | Tee-Object %s; exit $LastExitCode"
-vim.opt.shellquote = ""
-vim.opt.shellxquote = ""
+-- On Linux, Neovim uses the default $SHELL, which is usually bash or zsh.
+-- The explicit PowerShell configurations have been removed.
 
 -- Apply to common UI elements
 
@@ -53,7 +48,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.00 -- Turn off cursor lag
   vim.g.neovide_cursor_trail_size = 0 -- No fancy trails
   vim.g.neovide_position_animation_length = 0
-  vim.g.neovide_refresh_rate = 60 -- Match your monitor (important on Windows!)
+  vim.g.neovide_refresh_rate = 60 -- Match your monitor (important on Linux!)
   vim.opt.guifont = "JetBrainsMono NFM:h15"
 end
 
