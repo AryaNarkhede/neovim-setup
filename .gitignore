@@ -8,3 +8,4 @@ foo.*
 data
 *.env
 .env
+lazy-lock.json
