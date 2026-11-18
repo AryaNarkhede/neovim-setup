@@ -4,8 +4,9 @@ return {
     inlay_hints = { enabled = false },
     servers = {
       clangd = {
+        mason = false,
         cmd = {
-          "clangd",
+          "/usr/bin/clangd",
           "--background-index",
           "--clang-tidy",
           "--header-insertion=iwyu",
