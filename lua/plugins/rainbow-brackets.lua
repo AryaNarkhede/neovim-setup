@@ -1,4 +1,5 @@
 return {
+
   {
     "HiPhish/rainbow-delimiters.nvim",
     event = "BufReadPost", -- Load it when you open a file
